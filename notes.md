@@ -30,4 +30,12 @@ Strings in Java are common interview questions
 - Several different types of collections distinguished by ordering(how an element is stored) and sorting(how an element is positioned based on its value)
 - Collections have 3 main types, set(collections that do not allow duplicate elements), list(ordered and unsorted) and queue(a set of elements for processing).
 - Maps are an interface that are collections, but not part of the collection hierarchy, this has it's own interface and is used in hashtable, hashmap and  hashcode
-- Bounded types
+- Bounded types, introed in java 5 as a means of allowing generics. Enforcing type safety, for your files. Used via <> to instantiate different things
+- Generics can make generic classes which work with ideally any type, but the type is declared at the point of instantiation, inheritance can be used on Generics
+- Annotations are like decorators in Angular, start with @ and provide metadata about how things should work.
+- Most Annotations come from libs, @Override is a really common one meaning that the methods should override a super method, most IDEs have support for annotations and provide debugging support
+- Anotations can have properties in itself, as defined by their respective api
+- Anotations can be applied to types in the checker framework to add more expected properties on types to improve programming practice
+- Marshalling transforms an object instance into a data format that describes it, useful for instance transmission, instances have state which must be defined at a byte level so that those bytes can be sent to wherever and reconstruct the object with a similar state.
+- Marshalling has quite a few bits of terminology around it but most notably XML and JSON are the popular formats used to accomplish the goals of Marshalling
+- JAX-B is the most formal form of doing so in java architecture

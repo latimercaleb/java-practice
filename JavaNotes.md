@@ -50,3 +50,5 @@ When importing JARs this is the standard.
 ## Spring IoC
 IoC means `Inversion of Control`. Basically Spring uses an object factory to outsource the construction and management of objects.
 Can be found in app 1.
+
+Pojo and package

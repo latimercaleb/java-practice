@@ -88,8 +88,11 @@ A bean is declared in a beans xml list with 2 properties:
 - id: alias of bean
 - class : full name of package + class
 
-The id is used to retrieve or work with a bean, beans can have properties one of which is `singleton` which can be false or true to enable multiple instances or a single instance of said bean. By default a bean is a singleton.
-
+The id is used to retrieve or work with a bean, beans can have properties one of which is `singleton` which can be false or true to enable multiple instances or a single instance of said bean. By default a bean is a singleton. Only one instance in the container at a time. Can specify scope by, `scope="singleton"`, some other scopes are:
+- prototype: New bean per every request
+- request: scope to an http web request(web app only)
+- session: scope to an http web session (web app only)
+- global-session:  scope to global http web session (web app only)
 
 
 ## Spring Container

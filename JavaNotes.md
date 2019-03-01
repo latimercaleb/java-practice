@@ -133,3 +133,24 @@ The `name...` property will be fetched by IoC and changed to `setName...` prefix
  And in the context to access the values use: `val="${var.propName}"`
 
 ## Bean LifeCycle & Scope
+If `scope="prototype"` is not used then different instantiations of an object are just refferences to the same object. Polymorphic in a sense.
+If it is used each instantiation is it's own with it's own memory.
+
+Bean LifeCycle:
+``` javascript
+Container Built =>Bean instance generated =>Depenencies are injected => Spring processes internally =>Your custom init method gets called =>Bean is ready for use => Container is closed (custom destroy method can be invoked) and bean is destroyed
+```
+
+Custom code can occur during bean initialization and destruction by using lifecycle hooks
+
+For custom initialization it's done via app context with : `init-method="someMethodName"`
+
+For custom destruction it's done via app context with : `destroy-method="someMethodName"`
+
+To use these:
+- Define method in spring class
+- Configure those in the xml
+
+**Note** These methods cannot have any arguments and can be any access level and have any return type, beans of type prototype do not call destroy method. You have to handle via client side
+
+Add bean scope to coach app 

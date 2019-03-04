@@ -20,13 +20,14 @@
     	<constructor-arg ref="FortuneDep"/>
     </bean>    
     
-    <bean id="BoxingCoach" class="com.springappone.BoxingCoach">
+    <bean id="BoxingCoach" class="com.springappone.BoxingCoach" init-method="doInit" destroy-method="doDestroy" scope="prototype">
     	<constructor-arg ref="FortuneDep"/>
     	<property name="GymName" value="Black Jaguar"/>
     	<property name="WeightClass" value="Middle Weight"/>
     	<property name="email" value="${gym.email}" />
     	<property name="champ" value="${gym.champ}" />
     	<property name="memberCount" value="${gym.membercount}" />
+    	
     </bean>   
 </beans>
 

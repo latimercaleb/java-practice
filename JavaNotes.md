@@ -151,6 +151,8 @@ To use these:
 - Define method in spring class
 - Configure those in the xml
 
-**Note** These methods cannot have any arguments and can be any access level and have any return type, beans of type prototype do not call destroy method. You have to handle via client side
+**Note** These methods cannot have any arguments and can be any access level and have any return type, beans of type prototype do not call `destroy` method. You have to handle via client side
 
-Add bean scope to coach app 
+Add bean scope to coach app
+
+## Annotations & IoC

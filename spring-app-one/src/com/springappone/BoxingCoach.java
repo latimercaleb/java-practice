@@ -10,6 +10,20 @@ public class BoxingCoach implements Coach {
 	private String email;
 	private String champ;
 	
+	// Add fields for bean life-cycle messaging
+	private String inMessage;
+	private String outMessage;
+	
+	
+	// Add methods for init/destroy methods 
+	private void doInit() {
+		System.out.println(this.inMessage);
+	}
+	
+	private void doDestroy() {
+		System.out.println(this.outMessage);
+	}
+	
 	// Then add setters for those fields to be picked up by the context
 	public void setGymName(String name) {
 		this.gymName = name;
@@ -34,6 +48,8 @@ public class BoxingCoach implements Coach {
 	// Inject Service via Constructor
 	public BoxingCoach(FortuneService afortuneService) {
 		fortuneService = afortuneService;
+		this.inMessage = "Boxing Coach, initHook Called!";
+		this.outMessage = "Boxing Coach, destroyHook Called!"; 
 	}
 	@Override
 	public String getDailyTraining() {

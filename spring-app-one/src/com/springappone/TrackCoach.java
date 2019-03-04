@@ -17,5 +17,16 @@ public class TrackCoach implements Coach {
 	public String getDailyFortune() {
 		return fortuneService.getFortune();
 	}
+	
+	// Custom init hook 
+	private void initHook() {
+		int i = 24;
+		System.out.println("System startup hook: " + i);
+	}
+	// Custom destroy hook
+	private void destroyHook() {
+		int i = 42;
+		System.out.println("System cleanup hook: " + i);
+	}
 
 }

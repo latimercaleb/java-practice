@@ -1,9 +1,5 @@
 # Java w/ Spring & Hibernate
-Spring is a popular framework for building enterprise apps.
-
-Spring was supposed to be the lightweight iteration of J2EE.
-
-J2EE introduced a feature called EJB (_Enterprise Java Beans_) which was notorious for being slow.
+Spring is a popular framework for building enterprise apps that was supposed to be the lightweight iteration of J2EE. J2EE introduced a feature called EJB (_Enterprise Java Beans_) which was notorious for being slow.
 
 Spring first came out in 2004. And is viewed as a popular alternative to J2EE.
 
@@ -96,7 +92,14 @@ The id is used to retrieve or work with a bean, beans can have properties one of
 
 
 ## Spring Container
-Also known as `ApplicationContext` has two parts, first declare it's instance and pass in the config xml. Then extract beans by id and interface or class name
+Also known as `ApplicationContext` has two parts, first declare it's instance and pass in the config xml. Then extract beans by id and interface or class name.
+
+You instantiate a container by `ClassPathXmlApplicationContext springContext = new ClassPathXmlApplicationContext("applicationContext.xml");`
+
+In order to configure a spring container there are 3 ways:
+- Configuration via xml
+- Configuration via component scan + Annotations
+- Java Configuration class
 
 ## Dependency Injection
 `Dependency Inversion Principal` client delegates calls to another object and that object is responsible for getting the client it's dependencies.
@@ -171,7 +174,7 @@ To identify a class as a bean:
 - Use @Component to annotate Beans: `@Component("beanId") public class foo implements bar {...}`
 - Retrieve beans in app
 
-Spring can generate a default bean id for your component if you don't specify, it will be `by default the className with the first letter lowercase`
+Spring can generate a default bean id for your component if you don't specify, it will be `by default the className with the first letter lowercase`, this only works if only the first letter is Upper-case, if both are upper case it will not be changed.
 
 Explicit bean id: @Component("SomeName")
 
@@ -181,8 +184,64 @@ Default bean id: @Component
 `Auto wiring` is a process that spring uses to wire classes together spring will look for a class that matches the property by it's class or interface. If a match is determined it's auto injected.
 
 Autowiring has 3 types of injection like with standard DI:
-- Constructor Injection
-- Setter Injection
-- Field Injection
+- Constructor Injection: Declare var and add @Autowired to the constructor to consume and assign var
+- Setter Injection: Add var and add @Autowired to setter method that consumes and assigns var
+  - This can be done via **ANY** method, but it needs to have @Autowired the method name is insignificant this is called `method injection` and is only possible since we are using the annotations.
+- Field Injection: Inject by setting fields directly in class with @Autowired. No need for setters, handled via Java Reflection
 
-Try making your own service and make use of autowiring before continuing
+In using each injection type. Pick a single style and stay consistent through the project. All 3 give the same functionality.
+
+## Autowiring + Qualifiers
+In autowiring spring scans the components and looks for any bean that implements a select interface.
+
+But what about multiple implementations? Autowiring can't do it alone it will throw exception. Spring needs a unique bean to reference.
+
+This is done via `@Qualifier(...)` so after @Autowired, you have to provide the beanId of the component you want to reference.
+
+Qualifier can be used on all injection types with the exception of `Constructor Injection`.
+
+For Constructors the qualifier must be passed in with the constructor argument.
+
+``` java
+// Constructor based autowire
+@Autowired
+public KickBoxingCoach(@Qualifier("randomFortune")FortuneService newService) {
+		this.kickFortune = newService;
+}
+```
+Another type of qualifier `@Value("${...}")` is required to inject literals. This follows the same process as previous but using the files previously save for injecting them directly into the class that has the dependency rather than injecting via the spring container configuration.
+
+## Bean scope in Annotations
+Everything about bean scope still applies but scope can be declared via an annotation.
+
+Use: `@Scope("...")` on your bean components to do so.
+
+Like in using the config it's possible to use custom hooks via annotations to add some custom behavior into the bean scope.
+
+For initialization annotation use: `@PostConstruct`
+For destruction annotation use: `@PreDestroy`
+
+In Java 9 and up there is one more spring jar `javax.annotation-api-1.2.jar` that is needed to use these annotations
+
+The method itself can have any name, access modifier, or return type. Public & void are the most common.
+
+These methods like their config level counter parts do not accept arguments.
+
+Recall: PostConstruct hook runs after both the constructor and dependancies are injected. PreDestroy runs before the bean is destroyed, predestroy doesn't get called on prototype scope
+
+## Spring Configuration w/ Java code
+If using Java source code to configure spring, there is no XML required.
+
+Process:
+- Make a java class and annotate it as `@Configuration`
+- If needed enable component scanning with `@ComponentScan("...")`
+- Read Java config class with `AnnotationConfigApplicationContext`
+- Retrieve bean from Spring container
+
+
+In the class file marked for configuration you can extract and manipulate beans at the code level.
+
+
+
+
+## Spring MVC

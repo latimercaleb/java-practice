@@ -1,11 +1,12 @@
 package com.annote_practice.spring_app_annotations;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class SpringMain {
+public class SpringMainViajavaConfig {
 
 	public static void main(String[] args) {
-		ClassPathXmlApplicationContext springContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		AnnotationConfigApplicationContext springContext = new AnnotationConfigApplicationContext(StrengthConfig.class);
 		
 		KickBoxingCoach coachInstance = springContext.getBean("kickBoxingCoach",KickBoxingCoach.class);
 		SwimCoach customCoach = springContext.getBean("customCoach",SwimCoach.class);

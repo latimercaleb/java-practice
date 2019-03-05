@@ -98,14 +98,14 @@ The id is used to retrieve or work with a bean, beans can have properties one of
 ## Spring Container
 Also known as `ApplicationContext` has two parts, first declare it's instance and pass in the config xml. Then extract beans by id and interface or class name
 
-## dependency injection
+## Dependency Injection
 `Dependency Inversion Principal` client delegates calls to another object and that object is responsible for getting the client it's dependencies.
 
 Dependencies can be thought of as `helper methods or values` that a bean needs to function.
 
 App 1- Extension, Fortune Service
 
-There are two types of injection: `Constructor`, `Setter` and `Direct` injection, these can be auto-wired via annotations.
+There are three types of injection: `Constructor`, `Setter` and `Direct` injection, these can be auto-wired via annotations.
 To implement Constructor Injection do the following:
 - Define Interface and class of dependency
 - Generate constructor that consumes the dependency within class that is using dependency
@@ -156,3 +156,33 @@ To use these:
 Add bean scope to coach app
 
 ## Annotations & IoC
+An `annotation` is a special label added to Java classes that provide meta-data about that class. (Very similar to decorators in Angular)
+
+These labels are processed either run time or compile time to enable certain things.
+
+`@Override` is an example of an annotation, this tells the compiler to override the interface method.
+
+XML configuration can get really verbose so it's better to use annotations in this case to minimize the XML use.
+
+Spring scans classes for Annotations and if they are detected it will add them to the container.
+
+To identify a class as a bean:
+- Enable component scanning in XML: `<context: component-scan base-package="com.pkgName.fullName"/>`
+- Use @Component to annotate Beans: `@Component("beanId") public class foo implements bar {...}`
+- Retrieve beans in app
+
+Spring can generate a default bean id for your component if you don't specify, it will be `by default the className with the first letter lowercase`
+
+Explicit bean id: @Component("SomeName")
+
+Default bean id: @Component
+
+## Annotations & Dependency Injection
+`Auto wiring` is a process that spring uses to wire classes together spring will look for a class that matches the property by it's class or interface. If a match is determined it's auto injected.
+
+Autowiring has 3 types of injection like with standard DI:
+- Constructor Injection
+- Setter Injection
+- Field Injection
+
+Try making your own service and make use of autowiring before continuing

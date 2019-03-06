@@ -239,9 +239,13 @@ Process:
 - Retrieve bean from Spring container
 
 
-In the class file marked for configuration you can extract and manipulate beans at the code level.
+In the class file marked for configuration you can extract and manipulate beans at the code level, dependency injection must be done manually.
 
-
+Process:
+- Make method to expose bean using `@Bean`
+- Inject Dependencies
+- Read spring config class
+- Retrieve bean
 
 
 ## Spring MVC

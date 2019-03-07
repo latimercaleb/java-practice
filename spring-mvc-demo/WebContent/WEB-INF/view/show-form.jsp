@@ -11,7 +11,36 @@
 </head>
 <body>
 <div class='container'>
+	<h4>Version 1: No Model using jsp</h4>
 	<form action="processForm" method="GET" class='col s12'>
+		<div class='input-field s4 offset-s4'>
+		<input type='text'
+			    name='userName'
+			    placeholder='Who are you??' />
+			    <label for='userName'>Name: </label>
+		</div>
+	     <button class='btn waves-effect waves-light'
+	     		 type= 'submit'
+	     		 name='action'>Submit</button>
+	</form>
+	</div>
+	<div class='container'>
+	<h4>Version 2: With Model</h4>
+	<form action="processFormV2" method="GET" class='col s12'>
+		<div class='input-field s4 offset-s4'>
+		<input type='text'
+			    name='userName'
+			    placeholder='Who are you??' />
+			    <label for='userName'>Name: </label>
+		</div>
+	     <button class='btn waves-effect waves-light'
+	     		 type= 'submit'
+	     		 name='action'>Submit</button>
+	</form>
+	</div>
+	<div class='container'>
+	<h4>Version 3: With model + annotation</h4>
+	<form action="processFormV3" method="GET" class='col s12'>
 		<div class='input-field s4 offset-s4'>
 		<input type='text'
 			    name='userName'

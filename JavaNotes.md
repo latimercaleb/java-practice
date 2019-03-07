@@ -332,15 +332,42 @@ Process:
 - Make some methods in Controller, return the view you need to render, can take any parameter
 - Add request mapping `@RequestMapping("...")` with the route, this mapping handled via config will determine which request will be able to hit this controller
 
+The controller is super flexible with the parameters that it can allow, if data is needed from the request object pass in `HttpServletRequest paramName` for example to access form data and `Model someModel` to work with a model.
+
+Controllers can have a @requestmapping on the controller itself and each method within can have another mapping thus making a route which can resolve naming conflicts
 
 ### Form Data:
 Flow make an endpoint for /showForm to hit the helloworld controller and have it return a form. User enters into and hits submit to reach another endpoint /processForm. Which will send back a dynamic response.
 
 Done with one controller and two endpoints.
 
-Passing data from one endpoint to another is done via the JSP expression language: ${param.paramname}
+Passing data from one endpoint to another is done via the JSP expression language: `${param.paramname}`
 
 Linking to internal pages can be done simply with: `<a href='showForm'>Link here</a>` Note showForm is the name of the route being passed with @RequestMapping.
 
+Rather than using `HttpServletRequest` we can use another annotation called `@RequestParam(..)` to access form data and it can be added to a type as a parameter
+
+### Form Tags & Data-binding
+Spring MVC has form tags that support data-binding which will generate the html for you. They take the form of `form:tagName` and can be used in a number of ways within  a jsp page.
+
+These can be embedded into the page quite easily (like js or php) but require a refference at the top of the page in order to use. 
+
+### MVC: The Model
+The model is a container for the app data and this data can be accessed by the view at any point.
+An example is to modify form data before displaying it.
 
 ### MVC: The View
+Views in this example are using JSP but anything can be added to flavor them, (Materialize, react, bootstrap etc). In my examples I'm using Materialize via CDN for quick access to add a bit of style on top of my JSP.
+
+To include CSS, JS, SVG etc make a new folder (called resources or something like that) in web content, then add all the stuff and add the following configuration:
+
+`<mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>`
+
+To access these resources use `src="${pageContext.request.contextPath}/resources/subfolder/example.js"`.
+The pageContext.request.contextPath will enable corrected access to root.
+
+To access data from a model simply pass in the attribute name that you assigned in the model. So if in the controller you did `model.addAttribute("movies",someVar)` then in the view simply do `${movies}` to extract and render that value
+
+
+### Spring Deployment using Tomcat and WAR
+WAR (Web App Archive Files) is a compressed version of your web app you can export to this format then add it to Tomcat.

@@ -250,6 +250,20 @@ In additon to that there is injection of beans via a property file:
 - Refference values from properties file, do this with another new annotation `@Value("${...}")` over a field name that gets that value in the class itself
 
 
+### Recap
+Spring core has two main features `Inversion of Control (IoC)` & `Dependency Injection (DI)` which run out of a Spring container. A spring container can be configured in 3 ways and each configuration method has 3 styles of configuration.
+
+The configuration methods are:
+- ClassPathXmlApplicationContext via XML configuration
+- Annotation Configuration
+- Java code configuration
+
+The 3 styles of configuration are:
+- Constructor: Construct new object to consume dependency at point of instantiation
+- Setter: Call method to assign value to dependency and configure Spring to call and use method
+- Direct: Assign literal values or read literal values from an external file
+
+
 ## Spring MVC
 Spring MVC is a spring framework for web apps which endorses the MVC design pattern but with Spring core features like DI and IoC.
 Spring allows UI components, state management, form validation and conversion and a flexible configuration for the view layer.

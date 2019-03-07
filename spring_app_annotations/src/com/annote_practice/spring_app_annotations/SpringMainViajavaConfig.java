@@ -8,14 +8,22 @@ public class SpringMainViajavaConfig {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext springContext = new AnnotationConfigApplicationContext(StrengthConfig.class);
 		
-		KickBoxingCoach coachInstance = springContext.getBean("kickBoxingCoach",KickBoxingCoach.class);
-		SwimCoach customCoach = springContext.getBean("customCoach",SwimCoach.class);
-		
+		// KickBoxingCoach coachInstance = springContext.getBean("kickBoxingCoach",KickBoxingCoach.class);
+		SwimCoach swimCoach = springContext.getBean("swimCoach",SwimCoach.class);
+		/*
 		System.out.println(coachInstance.getDailyWorkout());
 		System.out.println(coachInstance.getDailyFortune());
 		coachInstance.makeFortune("Tacos and more tacos");
 		System.out.println(coachInstance.getDailyFortune());
-		System.out.println(customCoach.getDailyWorkout());
+		*/
+		System.out.println("\n");
+		
+		System.out.println(swimCoach.getDailyWorkout());
+		System.out.println(swimCoach.getDailyFortune());
+		swimCoach.makeFortune("Now it's even worse");
+		System.out.println(swimCoach.getDailyFortune());
+		System.out.println(swimCoach.getName());
+		System.out.println(swimCoach.getTitle());
 		springContext.close();
 	}
 

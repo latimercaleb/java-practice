@@ -43,6 +43,7 @@ public class App5FortuneService implements FortuneService {
 	@PreDestroy
 	public void clearMemory() {
 		messages.clear();
+		System.out.println("Custom clear on service run ...");
 	}
 	
 	@Override

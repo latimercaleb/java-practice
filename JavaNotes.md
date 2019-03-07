@@ -242,10 +242,22 @@ Process:
 In the class file marked for configuration you can extract and manipulate beans at the code level, dependency injection must be done manually.
 
 Process:
-- Make method to expose bean using `@Bean`
-- Inject Dependencies
-- Read spring config class
-- Retrieve bean
+- Make method to expose bean using `@Bean` method name must be the bean name and must return a new instance of the bean
+- Inject Dependencies: Inject dependencies by calling a bean constructor in a constructor that calls itself: `return new SwimCoach(badFortuneService());`
+- Read spring config class: As per usual
+- Retrieve bean: As per usual
+
+In additon to that there is injection of beans via a property file:
+- Create file like before, remember add it to the source dir not the package dir
+- Read from spring config via a new annotation `@PropertySource("classpath:strength.properties")` `classpath:fileName` is the location and name of the properties file
+- Refference values from properties file, do this with another new annotation `@Value("${...}")` over a field name that gets that value in the class itself
 
 
 ## Spring MVC
+Spring MVC is a spring framework for web apps which endorses the MVC design pattern but with Spring core features like DI and IoC.
+Spring allows UI components, state management, form validation and conversion and a flexible configuration for the view layer.
+
+Spring makes use of a `front controller` which is called `DispatchServlet` which routes requests to other controllers
+Controllers wrap business logic and route requests as usual
+Models wrap data
+And view templates wrap the UI

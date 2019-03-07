@@ -13,9 +13,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class App5FortuneService implements FortuneService {
-	// Read from file 
-	// Load into array
-	// return random element from array
+
 	private ArrayList<String> messages;
 	private boolean manualMessageAdded;
 	private String manualMessage;
@@ -26,6 +24,7 @@ public class App5FortuneService implements FortuneService {
 		messages = new ArrayList<String>();
 	}
 	
+	// Runs after constructor and/or dependencies
 	@PostConstruct
 	public void getMessages() {
 		File myFile = new File("./src/com/annote_practice/spring_app_annotations/Input.txt");
@@ -40,6 +39,7 @@ public class App5FortuneService implements FortuneService {
 		}
 	}
 	
+	// Runs before bean is destroyed
 	@PreDestroy
 	public void clearMemory() {
 		messages.clear();

@@ -12,6 +12,7 @@ public class SpringMainBeanScope {
 		
 		boolean cmp = (coachA == coachB);
 		System.out.println("Result is: " + cmp);
+		// Printing a bean prints it's qualified name + memory address
 		System.out.println("Memory loc of coachA: " + coachA);
 		System.out.println("Memory loc of coachB: " + coachB);
 		spring.close();

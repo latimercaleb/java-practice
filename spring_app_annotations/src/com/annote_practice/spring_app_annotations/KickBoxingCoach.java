@@ -12,21 +12,20 @@ import org.springframework.stereotype.Component;
 @Component
 // @Scope("prototype")
 public class KickBoxingCoach implements Coach {
+	// Direct based autowire
 	@Autowired
 	@Qualifier("app5FortuneService")
 	private FortuneService kickFortune;
 	
 //	// Setter based autowire, requires blank constructor
-//	public KickBoxingCoach() {
-//		
-//	}
+//	public KickBoxingCoach() {...}
 	
 //	@Autowired
 //	public void setFortuneService(FortuneService afortuneService) {
 //		this.kickFortune = afortuneService;
 //	}
 	
-	// Constructor based autowire
+// // Constructor based autowire
 //	@Autowired
 //	public KickBoxingCoach(FortuneService newService) {
 //		this.kickFortune = newService;

@@ -15,7 +15,7 @@ public class StrengthConfig {
 	public FortuneService badFortuneService() {
 		return new BadFortuneService();
 	}
-	// define coach bean
+	// define coach bean which must consume dependency method
 	@Bean
 	public Coach swimCoach () {
 		return new SwimCoach(badFortuneService());

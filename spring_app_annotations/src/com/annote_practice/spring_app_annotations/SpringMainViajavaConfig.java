@@ -6,6 +6,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class SpringMainViajavaConfig {
 
 	public static void main(String[] args) {
+		/* Since this is using a code version of a configuration file
+		We use AnnotationConfigApplicationContext instead of ClassPathXmlApplicationContext which takes the name of the config file with .class
+		*/
 		AnnotationConfigApplicationContext springContext = new AnnotationConfigApplicationContext(StrengthConfig.class);
 		
 		// KickBoxingCoach coachInstance = springContext.getBean("kickBoxingCoach",KickBoxingCoach.class);

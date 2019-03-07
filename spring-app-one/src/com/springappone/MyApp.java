@@ -3,13 +3,12 @@ package com.springappone;
 public class MyApp {
 
 	public static void main(String[] args) {
-		// make obj
-		// Coach coach = new TrackCoach();
-		// make configurable obj 
-		
-		// works with any of the coach classes due to interface
-		// System.out.print(coach.getDailyTraining());
+		// make object
+		Coach coach = new TrackCoach();
 		// use obj
+		System.out.print(coach.getDailyTraining());
+		
+		// Currently this is not configurable and not using beans or Spring, expansions in SpringAppMain.java
 	}
 
 }

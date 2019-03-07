@@ -251,14 +251,14 @@ In additon to that there is injection of beans via a property file:
 
 
 ### Recap
-Spring core has two main features `Inversion of Control (IoC)` & `Dependency Injection (DI)` which run out of a Spring container. A spring container can be configured in 3 ways and each configuration method has 3 styles of configuration.
+Spring core has two main features `Inversion of Control (IoC)` & `Dependency Injection (DI)` which run out of a Spring container. A spring container can be configured in 3 ways and each configuration method has access to 3 styles of DI.
 
 The configuration methods are:
 - ClassPathXmlApplicationContext via XML configuration
 - Annotation Configuration
 - Java code configuration
 
-The 3 styles of configuration are:
+The 3 styles of DI are:
 - Constructor: Construct new object to consume dependency at point of instantiation
 - Setter: Call method to assign value to dependency and configure Spring to call and use method
 - Direct: Assign literal values or read literal values from an external file
@@ -272,3 +272,5 @@ Spring makes use of a `front controller` which is called `DispatchServlet` which
 Controllers wrap business logic and route requests as usual
 Models wrap data
 And view templates wrap the UI
+
+## Getting setup for Spring MVC 

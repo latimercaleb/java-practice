@@ -273,4 +273,74 @@ Controllers wrap business logic and route requests as usual
 Models wrap data
 And view templates wrap the UI
 
-## Getting setup for Spring MVC 
+## Getting setup for Spring MVC
+Should still have Tomcat, Eclipse and connect them.
+
+In addition to that Spring MVC source code and latest spring jars should be installed.
+
+**Getting the config correct is known to be difficult...**
+Steps:
+- Configure `Web-Inf/web.xml` to allow DispatchServlet then enable URL mapping
+- Add some further configurations for component scanning, conversion, formatting and validation as well as MVC view resolver
+
+### Configuring the servlet
+First make a new project in eclipse `Dynamic web project` then import spring jar files into `WebContent/Web-inf/lib`. Doing this adds them to the classpath and buildpath automagically.
+
+Grab additionaly javax.servelet.jsp files from zip as well and add them.
+
+Next import the xml templates and add them into web-inf.
+
+####  The templates explained
+There are two templates used in my project `web.xml` & `spring-mvc-demo-servlet.xml`
+Web xml is the entry point of the web application context and the file that contains it's configuration
+While `[servlet-name]-servlet.xml` is the file for the front-controller itself and it's configurations
+
+#### Configuring the MVC DispatchServlet
+
+Headers:
+``` xml
+<display-name>spring-mvc-demo</display-name>
+<absolute-ordering />
+```
+- display name has the name of the servlet used
+- absolute ordering can be used to to limit the amount of classpath scanning the Servlet container does at startup, which controls scanning for Servlet annotations
+
+``` xml
+<!-- Step 3: Add support for component scanning -->
+	<context:component-scan base-package="com.luv2code.springdemo" />
+
+	<!-- Step 4: Add support for conversion, formatting and validation support -->
+	<mvc:annotation-driven/>
+
+	<!-- Step 5: Define Spring MVC view resolver -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+```
+
+The package used in the component scan on line 3, MUST be the package that contains your controllers otherwise spring can't find the page and returns a 404
+
+Bean properties here with prefix and suffix have to do with the the prefix of the path and file extension of the view to return
+
+### MVC: The Controller
+Process:
+- Make a class use `@Controller` annotation
+- Make some methods in Controller, return the view you need to render, can take any parameter
+- Add request mapping `@RequestMapping("...")` with the route, this mapping handled via config will determine which request will be able to hit this controller
+
+
+### Form Data:
+Flow make an endpoint for /showForm to hit the helloworld controller and have it return a form. User enters into and hits submit to reach another endpoint /processForm. Which will send back a dynamic response.
+
+Done with one controller and two endpoints.
+
+Passing data from one endpoint to another is done via the JSP expression language: ${param.paramname}
+
+Linking to internal pages can be done simply with: `<a href='showForm'>Link here</a>` Note showForm is the name of the route being passed with @RequestMapping.
+
+
+### MVC: The View

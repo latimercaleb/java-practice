@@ -16,7 +16,7 @@ There are higher versions of the java language but 7 & 8 are the most popular. I
 - Functional Interfaces: In short interfaces with a single method:
 ```java
 interface baz{
-      void doThing(int foo, String bar){...}
+      public void doThing(int foo, String bar){...}
 }
 ```
 - Lambda expressions: Annoymous single line functions to return values, similar to the arrow function in ES6
@@ -68,12 +68,6 @@ A pojo should not:
 
 `Packages` in java work like namespaces and contain sets of related classes and interfaces. They prevent name conflicts and make indexing better and are a first layer of data-abstraction. Packages can have subpackages and all packages are either user-defined or built in
 
-## App 1 notes
-In Eclipse always make package first then classes go in package
-Spring has two main parts to it's container `Inversion of control` & `dependency injection`
-The setup for this is done via configuration in xml, java annotations or java source
-In a typical spring pipeline you make spring beans => generate a spring container => retrieve beans from container
-
 ## Beans
 ``` xml
 <beans>
@@ -91,6 +85,11 @@ The id is used to retrieve or work with a bean, beans can have properties one of
 - global-session:  scope to global http web session (web app only)
 
 
+In Eclipse always make package first then classes go in package
+Spring has two main parts to it's container `Inversion of control` & `dependency injection`
+In a typical spring pipeline you make spring beans => generate a spring container => retrieve beans from container as the app runs
+
+
 ## Spring Container
 Also known as `ApplicationContext` has two parts, first declare it's instance and pass in the config xml. Then extract beans by id and interface or class name.
 
@@ -106,8 +105,6 @@ In order to configure a spring container there are 3 ways:
 
 Dependencies can be thought of as `helper methods or values` that a bean needs to function.
 
-App 1- Extension, Fortune Service
-
 There are three types of injection: `Constructor`, `Setter` and `Direct` injection, these can be auto-wired via annotations.
 To implement Constructor Injection do the following:
 - Define Interface and class of dependency
@@ -120,15 +117,15 @@ For Setter Injection do the following:
 
 The `name...` property will be fetched by IoC and changed to `setName...` prefixing set and uppercasing the first letter, an error will be thrown if it cannot find a set method that matches.
 
- For Literal Injection do the following:
+ For Direct Injection do the following:
  - Create a setter method for your injection for private fields
- - Add configuration in context with `<property name ="name of set method" value="literal value to have in code"/>`
+ - Add configuration in context with `<property name ="name of set method" value="${direct value to have in code}"/>`
 
  Note `val="..."` must be a literal and `ref="..."` must be a bean ID.
 
  Values can also be added via an `external property file` which would need to be loaded into the spring config file.
 
- File must be `.properties` and follow the pattern of `var.propName=value` var can be anything but the `propName` must be consistent with the spring file.
+ File must be `.properties` and follow the pattern of `var.propName=value` var can be anything but the `propName` must be consistent with the spring file. Properties file needs to be loaded into src folder, not package folder
 
  To load the prop file into spring you'll need to add:
  `<context:property-placeholder location="classpath:fileName.properties" />`

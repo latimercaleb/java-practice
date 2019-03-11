@@ -283,6 +283,8 @@ Steps:
 - Configure `Web-Inf/web.xml` to allow DispatchServlet then enable URL mapping
 - Add some further configurations for component scanning, conversion, formatting and validation as well as MVC view resolver
 
+When importing sometimes the app will crash due to missing refferences, enable Apache runtime via properties => project facets, to enable the finding of the path
+
 ### Configuring the servlet
 First make a new project in eclipse `Dynamic web project` then import spring jar files into `WebContent/Web-inf/lib`. Doing this adds them to the classpath and buildpath automagically.
 
@@ -350,7 +352,7 @@ Rather than using `HttpServletRequest` we can use another annotation called `@Re
 ### Form Tags & Data-binding
 Spring MVC has form tags that support data-binding which will generate the html for you. They take the form of `form:tagName` and can be used in a number of ways within  a jsp page.
 
-These can be embedded into the page quite easily (like js or php) but require a refference at the top of the page in order to use. 
+These can be embedded into the page quite easily (like js or php) but require a refference at the top of the page in order to use.
 
 ### MVC: The Model
 The model is a container for the app data and this data can be accessed by the view at any point.

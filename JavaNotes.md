@@ -354,6 +354,8 @@ Spring MVC has form tags that support data-binding which will generate the html 
 
 These can be embedded into the page quite easily (like js or php) but require a refference at the top of the page in order to use.
 
+Include the taglib refference at the top of the jsp page to make use of these tags
+
 ### MVC: The Model
 The model is a container for the app data and this data can be accessed by the view at any point.
 An example is to modify form data before displaying it.

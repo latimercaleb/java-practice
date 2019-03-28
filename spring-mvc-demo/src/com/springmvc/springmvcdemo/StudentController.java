@@ -23,7 +23,7 @@ public class StudentController {
 		// Model attribute above must use the same key declared in the model to access value 
 		
 		// Good practice to log data retrieved from model before attempting to write to a view
-		System.out.println("Student name: " + theStudent.getFirstName() + ", " + theStudent.getLastName() + ", " + theStudent.getCountry());
+		System.out.println("Student name: " + theStudent.getFirstName() + ", " + theStudent.getLastName() + ", " + theStudent.getCountry() + ", " + theStudent.getCountryFromHashSet()+ ", " + theStudent.getFavoriteLanguage() + ", " + theStudent.getSystemOS());
 		return "show-student-response";
 	}
 }

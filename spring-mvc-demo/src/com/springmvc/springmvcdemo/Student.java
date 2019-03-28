@@ -9,8 +9,17 @@ public class Student {
 	private String lastName;
 	private String country;
 	
+	private String countryFromHashSet;
+	
 	// Generate a list of countries to not hard code list
 	private LinkedHashMap<String,String> countryContainer;
+	
+	// Generate property for favoriteLanguage
+	private String favoriteLanguage;
+	
+	// Generate a property for fave OS 
+	private String systemOS;
+	
 	public Student () {
 		
 		countryContainer = new LinkedHashMap<>();
@@ -48,4 +57,29 @@ public class Student {
 	public LinkedHashMap<String,String> getCountryContainer() {
 		return countryContainer;
 	}
+	
+	public void setCountryFromHashSet(String countryFromHashSet) {
+		this.countryFromHashSet = countryFromHashSet;
+	}
+	public String getCountryFromHashSet() {
+		return countryFromHashSet;
+	}
+
+	public String getFavoriteLanguage() {
+		return favoriteLanguage;
+	}
+
+	public void setFavoriteLanguage(String favoriteLanguage) {
+		this.favoriteLanguage = favoriteLanguage;
+	}
+
+	public String getSystemOS() {
+		return systemOS;
+	}
+
+	public void setSystemOS(String systemOS) {
+		this.systemOS = systemOS;
+	}
+
+
 }

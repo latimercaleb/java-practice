@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +10,7 @@
 		<div class="divider"></div>
 		<div class='section'>
 			<p class='col s6 offset-s6'>You are: ${param.userName}</p>
+			<!-- Extract data from model -->
 			<p class='col s6 offset-s6'> ${threaten}</p>
 		</div>
 		<div class="divider"></div>

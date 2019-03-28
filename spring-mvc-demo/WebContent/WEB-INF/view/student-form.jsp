@@ -26,12 +26,25 @@
 		</form:select>
 		<br><br>
 		Non-hard-coded Country options
-		<form:select path="countryContainer">
+		<form:select path="countryFromHashSet">
 			<form:options items="${student.countryContainer}"/>
 		</form:select>
-		<!-- Drop down list practice -->
 		<br><br>
-		<!-- Radio Button Practice -->
+		<!-- Radio Button practice, could also use hashset and iterate like above, make sure to bind path to the property with get and set in Student class 
+			Get is called on page fetch, set is called on clicking submit and the data gets written to the referrence on the model
+		-->
+		Favorite Language:
+		Java<form:radiobutton path="favoriteLanguage" value="Java" />
+		JavaScript<form:radiobutton path="favoriteLanguage" value="JavaScript" />
+		PHP<form:radiobutton path="favoriteLanguage" value="PHP" />
+		SQL<form:radiobutton path="favoriteLanguage" value="SQL" />
+		Swift<form:radiobutton path="favoriteLanguage" value="Swift" />
+		<br><br>
+		<!-- Check Box Practice, ideally since a checkbox can be a list of multiple selections. It should be bound in the controller with an array, not a string.-->
+		Favorite OS:
+		Linux<form:checkbox      path="systemOS" value="Linux" />
+		Mac<form:checkbox        path="systemOS" value="Mac"/>
+		MS Windows<form:checkbox path="systemOS" value="Windows"/>
 		<input type="submit" value="Submit"/>
 	</form:form>
 </body>

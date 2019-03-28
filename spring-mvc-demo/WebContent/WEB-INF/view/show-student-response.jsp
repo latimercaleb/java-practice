@@ -11,7 +11,11 @@
 		<div class="divider"></div>
 		<div class='section'>
 			<!-- Extract data from model -->
-			<p class='col s6 offset-s6'> You are: ${student.firstName}, ${student.lastName} from ${student.country}</p>
+			<p class='col s6 offset-s6'> You are: ${student.firstName}, ${student.lastName} </p>
+			<p class='col s6 offset-s6'> From ${student.country}</p>
+			<p class='col s6 offset-s6'> Country Code ${student.countryFromHashSet} </p> 
+			<p class='col s6 offset-s6'>Favorite Language is ${student.favoriteLanguage}</p>
+			<p class='col s6 offset-s6'>Favorite OS is ${student.systemOS}</p>
 		</div>
 		<div class="divider"></div>
 	</div>

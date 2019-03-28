@@ -1,6 +1,9 @@
 package com.springmvc.springmvcdemo;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 // Source class to practice validation with Spring MVC
@@ -12,6 +15,16 @@ public class Customer {
 	@NotNull(message="This cannot be null or whitespace") 
 	@Size(min=1,message="This field is required")
 	private String lastName;
+	
+	// Max & min validation annotation practice
+	@Max(value=10, message="Hey, don't be greedy!")
+	@Min(value=0, message="Coupons must be positive!")
+	@NotNull(message="You must have a coupon") 
+	private Integer coupons;
+	
+	@Pattern(regexp = "^[0-9] {5}", message="Only 5 digit zip allowed")
+	private String zip;
+	
 	public String getLastName() {
 		return lastName;
 	}
@@ -23,5 +36,17 @@ public class Customer {
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	public Integer getCoupons() {
+		return coupons;
+	}
+	public void setCoupons(Integer coupons) {
+		this.coupons = coupons;
+	}
+	public String getZip() {
+		return zip;
+	}
+	public void setZip(String zip) {
+		this.zip = zip;
 	} 
 }

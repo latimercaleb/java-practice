@@ -10,5 +10,7 @@
 	<h2>Customer Result Screen</h2>
 	<p>Customer First Name: ${customer.firstName}</p>
 	<p>Customer Last Name: ${customer.lastName}</p>
+	<p>Your coupon count is: ${customer.coupons }</p>
+	<p>Your zip is: ${customer.zip}</p>
 </body>
 </html>

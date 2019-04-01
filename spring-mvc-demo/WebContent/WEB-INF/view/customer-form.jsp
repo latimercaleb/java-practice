@@ -27,6 +27,9 @@
 	Zip Code: <form:input path="zip"/>
 	<form:errors path="zip" cssClass="error" />
 	
+	Course Code: <form:input path="courseCode"/>
+	<form:errors path="courseCode" cssClass="error" />
+	
 	<input type="submit" value="submit"/> 
 	</form:form>
 </body>

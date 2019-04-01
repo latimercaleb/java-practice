@@ -12,5 +12,6 @@
 	<p>Customer Last Name: ${customer.lastName}</p>
 	<p>Your coupon count is: ${customer.coupons }</p>
 	<p>Your zip is: ${customer.zip}</p>
+	<p>Course Code is: ${customer.courseCode}</p>
 </body>
 </html>

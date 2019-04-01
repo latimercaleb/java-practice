@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import com.springmvc.springmvcdemo.validation.CourseCode;
+
 // Source class to practice validation with Spring MVC
 public class Customer {
 	private String firstName;
@@ -22,9 +24,21 @@ public class Customer {
 	@NotNull(message="You must have a coupon") 
 	private Integer coupons;
 	
-	@Pattern(regexp = "^[0-9] {5}", message="Only 5 digit zip allowed")
+	@Pattern(regexp="^[0-9]{5}", message="Only 5 digit zip allowed")
 	private String zip;
 	
+	
+	// Add custom annotation value on main class, can provide custom messages or use defaults
+	@CourseCode
+	// @CourseCode(value="400", message="Must Start with 400")
+	public String courseCode;
+	
+	public String getCourseCode() {
+		return courseCode;
+	}
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
 	public String getLastName() {
 		return lastName;
 	}

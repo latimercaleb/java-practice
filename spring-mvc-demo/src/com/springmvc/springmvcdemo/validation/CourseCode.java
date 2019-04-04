@@ -20,7 +20,7 @@ public @interface CourseCode {
 	public String value() default "LUV";
 	public String message() default "LUV prefix required";
 	
-	// Groups are for grouping messages together 
+	// Groups are for grouping messages together
 	public Class<?> [] groups() default {};
 	
 	// Payload is for additional data around error

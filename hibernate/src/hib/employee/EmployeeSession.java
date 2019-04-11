@@ -9,9 +9,9 @@ import hib.student.entity.Student;
 public class EmployeeSession {
 	
 	public Session session;
-	private SessionFactory factory;
+	public SessionFactory factory;
 	
-	EmployeeSession(){
+	public EmployeeSession(){
 		 factory = new Configuration()
 				.configure("practice8config.xml")
 				.addAnnotatedClass(Employee.class)
@@ -19,5 +19,10 @@ public class EmployeeSession {
 
 		 session = factory.getCurrentSession();
 		
+	}
+	
+	public Boolean delete() {
+		this.factory.close();
+		return this.factory.isClosed();
 	}
 }

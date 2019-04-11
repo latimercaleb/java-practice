@@ -2,6 +2,8 @@ package hib.employee;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +12,7 @@ import javax.persistence.Table;
 public class Employee {
 	@Id
 	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name="first_name")
@@ -52,4 +55,12 @@ public class Employee {
 	public void setCompany(String company) {
 		this.company = company;
 	}
+
+	public Employee(String firstName, String lastName, String company) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.company = company;
+	}
+	
+	public Employee() {}
 }

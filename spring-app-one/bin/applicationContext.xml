@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!-- When using Direct Method via properties file, location of file must be specified in the config like so -->
+    <context:property-placeholder location="classpath:boxing.properties" />
+    
+    
+    <!-- Define your beans here -->
+    
+    <!-- Services or other dependencies must be added as beans -->
+    <bean id="FortuneDep"  class="com.springappone.HappyFortune"></bean>
+    
+    <!-- Setter DI property must be consumed by bean and name must be method name for consumption method -->
+    <bean id="BaseballCoach"  class="com.springappone.BaseballCoach">
+    	<property name="fortuneService" ref="FortuneDep"/>
+    </bean>   
+    
+    <!-- Constructor DI, property must be referenced as the following -->
+    <bean id="TrackCoach"  class="com.springappone.TrackCoach">
+    	<constructor-arg ref="FortuneDep"/>
+    </bean>    
+    
+    <!-- Constructor DI + Direct DI a good rule of thumb is to always use one or the other types of DI -->
+    <bean id="BoxingCoach" class="com.springappone.BoxingCoach">
+    	<constructor-arg ref="FortuneDep"/>
+    	<property name="GymName" value="Black Jaguar"/>
+    	<property name="WeightClass" value="Middle Weight"/>
+    	<property name="email" value="${gym.email}" />
+    	<property name="champ" value="${gym.champ}" />
+    	<property name="memberCount" value="${gym.membercount}" />
+    
+    </bean>   
+</beans>
+
+
+
+
+

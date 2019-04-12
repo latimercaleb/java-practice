@@ -10,7 +10,7 @@ public class RetrieveEmployee {
 		EmployeeSession em = new EmployeeSession();
 		try {
 			em.session.beginTransaction();
-			List<Employee> roster =  em.session.createQuery("from Employee as e WHERE lastName LIKE '%.'").getResultList();
+			List<Employee> roster =  em.session.createQuery("from Employee as e WHERE e.lastName LIKE '%.'").getResultList();
 			// roster.forEach(solider -> System.out.println(soldier));
 			for(Employee soldier : roster) {
 				System.out.println("Reporting in: " + soldier.getFirstName() + ", " + soldier.getLastName() + " of " + soldier.getCompany() + "!");

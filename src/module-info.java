@@ -1,0 +1,9 @@
+/**
+ * 
+ */
+/**
+ * @author Caleb
+ *
+ */
+module hibernate {
+}

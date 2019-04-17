@@ -54,4 +54,7 @@ public class InstructorDetail {
 	public void setInstructor(Instructor instructor) {
 		this.instructor = instructor;
 	}
+	public String getDetails() {
+		return "Channel: " + this.getYoutubeChan() + ", " + "Hobby: " +  this.getHobby();
+	}
 }

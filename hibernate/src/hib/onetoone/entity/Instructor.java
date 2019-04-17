@@ -69,4 +69,7 @@ public class Instructor {
 		this.instructorDetail = instructorDetail;
 	}
 	
+	public String getInstructorName () {
+		return "Name: " + this.getFirstName() + ", " + this.getLastName();
+	}
 }

@@ -19,11 +19,11 @@ public class CreateOnetoOneDemo {
 
 		try {
 			// Make objects 
-			Instructor teach = new Instructor("Test", "Teach", "teach@teach.com");
-			InstructorDetail teachDeets = new InstructorDetail("/ttv","Gaming");
+			Instructor teach = new Instructor("Megaman", "X", "x@teach.com");
+			InstructorDetail teachDeets = new InstructorDetail("/ttv","Jumping and Shooting");
 			
-			Instructor teach1 = new Instructor("Test", "Teach", "teach@teach.com");
-			InstructorDetail teachDeets2 = new InstructorDetail("/ttv","Gaming");
+			Instructor teach1 = new Instructor("Zero", "V", "v@teach.com");
+			InstructorDetail teachDeets2 = new InstructorDetail("/ttv","Slashing and Jumping");
 			
 			// Make relation of objects 
 			teach.setInstructorDetail(teachDeets);

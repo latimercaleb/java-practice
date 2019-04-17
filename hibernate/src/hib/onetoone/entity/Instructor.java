@@ -1,14 +1,20 @@
 package hib.onetoone.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.CascadeType;
+
+import hib.onetomany.entity.Course;
 
 
 @Entity
@@ -31,6 +37,19 @@ public class Instructor {
 	@JoinColumn(name="instructor_detail_id")
 	private InstructorDetail instructorDetail;
 	
+	// Use the instructor -> many course mapping as a bidirectional
+	@OneToMany(mappedBy="instructor", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	private List<Course> Courses;
+	
+	public List<Course> getCourses() {
+		// Iterate collection and print each course name - implement later
+		return Courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		Courses = courses;
+	}
+
 	public Instructor () {}
 
 	public Instructor(String firstName, String lastName, String email) {
@@ -71,5 +90,14 @@ public class Instructor {
 	
 	public String getInstructorName () {
 		return "Name: " + this.getFirstName() + ", " + this.getLastName();
+	}
+	
+	// Adding two way methods for courses
+	public void add(Course newCourse) {
+		if (Courses == null) {
+			Courses = new ArrayList<>();
+		}
+		Courses.add(newCourse);
+		newCourse.setInstructor(this);
 	}
 }

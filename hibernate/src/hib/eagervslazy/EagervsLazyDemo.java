@@ -27,10 +27,11 @@ public class EagervsLazyDemo {
 			// With Lazy, the courses aren't loaded until called for on line 30
 			System.out.println("My instructor: " + myInstructor);
 			System.out.println(myInstructor.getInstructorName());
-			// System.out.println(myInstructor.getCourses());
+			// Fix for lazy loading bug 1: Call getter before session closes, this will cache the data locally and it can be printed or re-used later without trying to lazy load again
+			System.out.println(myInstructor.getCourses());
 			session.getTransaction().commit();
 			// If the courses are called after the session is closed it should through a bad exception for lazy data, eager data doesn't trip this error
-			// session.close();
+			session.close();
 			System.out.println(myInstructor.getCourses());
 			System.out.println("Session is saved");
 		}

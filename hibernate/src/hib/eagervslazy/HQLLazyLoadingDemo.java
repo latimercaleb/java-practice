@@ -1,14 +1,15 @@
-package hib.onetomany.demo;
+package hib.eagervslazy;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import hib.onetomany.entity.Course;
 import hib.onetoone.entity.Instructor;
 import hib.onetoone.entity.InstructorDetail;
 
-public class CreateOneToManyCoursesDemo {
+public class HQLLazyLoadingDemo {
 	public static void main(String[] args) {
 		SessionFactory factory = new Configuration()
 								.configure("OneToMany.cfg.xml")
@@ -21,22 +22,16 @@ public class CreateOneToManyCoursesDemo {
 		session.beginTransaction();
 
 		try {
-			// To add courses they must have an instructor ID as a foreign key, fetch the instructor first
-			int uid = 2; 
-			Instructor myInstructor = session.get(Instructor.class, uid);
-			// Make new courses
-			Course newCourseA = new Course("Streaming 101");
-			Course newCourseB = new Course("Spring Hibernate");
-			Course newCourseC = new Course("Docker");
-			// Bind these new courses to the object 
-			myInstructor.add(newCourseA);
-			myInstructor.add(newCourseB);
-			myInstructor.add(newCourseC);
-			// Save the courses 
-			session.save(newCourseA);
-			session.save(newCourseB);
-			session.save(newCourseC);
+			// Another option for handling queries in this one would be to query with HQL 
+			int uid = 2;
+			Query<Instructor> query = session.createQuery("SELECT i from Instructor i " + "JOIN FETCH i.Courses " + "WHERE i.id=:theInstructorId",Instructor.class);
+			query.setParameter("theInstructorId",uid);
+			
+			Instructor myTeach = query.getSingleResult();
+			System.out.println("Who are ya? " + myTeach.getFirstName());
 			session.getTransaction().commit();
+			session.close();
+			System.out.println("Courses via lazy load: " + myTeach.getCourses());
 			System.out.println("Session is saved");
 		}
 		finally {

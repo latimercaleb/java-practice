@@ -38,23 +38,23 @@ public class Instructor {
 	@JoinColumn(name="instructor_detail_id")
 	private InstructorDetail instructorDetail;
 	
-	
 	// Experiment with fetch type and lazy loading 
 	// Use the instructor -> many course mapping as a bidirectional
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="instructor", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	private List<Course> Courses;
-	
-	public List<Course> getCourses() {
+	public String getCourses() {
 		// Iterate collection and print each course name - implement later
-		return Courses;
+		String CourseList = "Course Listing for " + this.getInstructorName() + " are: ";
+		for(Course course : this.Courses){
+			CourseList += course.getTitle() + ", ";
+		}
+		CourseList = CourseList.substring(0, CourseList.length() - 2);
+		return CourseList;
 	}
-
 	public void setCourses(List<Course> courses) {
 		Courses = courses;
 	}
-
 	public Instructor () {}
-
 	public Instructor(String firstName, String lastName, String email) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -63,38 +63,30 @@ public class Instructor {
 	public String getFirstName() {
 		return firstName;
 	}
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 	public String getLastName() {
 		return lastName;
 	}
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	public InstructorDetail getInstructorDetail() {
 		return instructorDetail;
 	}
-
 	public void setInstructorDetail(InstructorDetail instructorDetail) {
 		this.instructorDetail = instructorDetail;
 	}
-	
 	public String getInstructorName () {
 		return "Name: " + this.getFirstName() + ", " + this.getLastName();
 	}
-	
 	// Adding two way methods for courses
 	public void add(Course newCourse) {
 		if (Courses == null) {

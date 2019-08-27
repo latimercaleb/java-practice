@@ -6,7 +6,7 @@
 		<hr>
 		<p>Routes below</p>
 		<ul>
-			<li></li>
+			<li><a href="${pageContext.request.contextPath}/api/customers">Get All Customers</a></li>
 		</ul>
 		
 	</body>

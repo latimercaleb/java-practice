@@ -42,6 +42,7 @@ public class Instructor {
 	// Use the instructor -> many course mapping as a bidirectional
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="instructor", cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	private List<Course> Courses;
+	
 	public String getCourses() {
 		// Iterate collection and print each course name - implement later
 		String CourseList = "Course Listing for " + this.getInstructorName() + " are: ";

@@ -32,7 +32,7 @@ public class RetrieveOnetoOneDemo {
 			System.out.println("Issue detected");
 			exc.printStackTrace();
 		}
-		finally {
+		finally { // Resolves potential memory leaks
 			session.close();
 			factory.close();
 		}

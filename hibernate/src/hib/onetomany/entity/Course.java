@@ -11,12 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import hib.onetoone.entity.Instructor;
-import hib.onettomany.entity.Review;
+import hib.manytomany.entity.Review;
+import hib.student.entity.Student;
 
 @Entity
 @Table(name="course")
@@ -39,6 +42,16 @@ public class Course {
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name="course_id")
 	private List<Review> reviews;
+	
+	// New Relation for ManyToMany Mapping for Students in the course
+	// JoinColumn is the key for THIS entity object, inverseColumn is the other object 
+	@ManyToMany(fetch=FetchType.LAZY,
+				cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(name="course_student",
+			   joinColumns=@JoinColumn(name="course_id"), 
+			   inverseJoinColumns=@JoinColumn(name="student_id"))
+	private List<Student> students;
+	
 	
 	public List<Review> getReviews() {
 		return reviews;
@@ -73,6 +86,12 @@ public class Course {
 		this.title = title;
 	}
 	
+	public List<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
 	// Helper method for adding reviews
 	public void addReview(Review newReview) {
 		if(reviews == null) {
@@ -81,4 +100,11 @@ public class Course {
 		reviews.add(newReview);
 	}
 	
+	// Helper method for adding a student
+	public void addStudent(Student newStudent) {
+		if(students == null) {
+			students = new ArrayList<>();
+		}
+		students.add(newStudent);
+	}
 }

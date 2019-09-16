@@ -25,9 +25,9 @@ public class CreateOneToManyCoursesUni {
 		try {
 			// Adding course, then review in one cascading create
 			Course firstCourse = new Course("Dark Souls: Prepare to live");
-			firstCourse.addReview(new Review("Excellent info"));
-			firstCourse.addReview(new Review("Geez this is so in depth! Dope!"));
-			firstCourse.addReview(new Review("What noob needs this?"));
+			// firstCourse.addReview(new Review("Excellent info"));
+			// firstCourse.addReview(new Review("Geez this is so in depth! Dope!"));
+			// firstCourse.addReview(new Review("What noob needs this?"));
 			
 			session.save(firstCourse);
 			session.getTransaction().commit();

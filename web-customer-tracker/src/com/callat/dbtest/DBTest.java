@@ -21,8 +21,10 @@ public class DBTest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Establish connection
-		String user = "springstudent";
-		String pass = "springstudent";
+//		String user = "springstudent";
+//		String pass = "springstudent";
+		String user = "hbstudent";
+		String pass = "hbstudent";
 		String jdbcURL = "jdbc:mysql://localhost:3306/web_customer_tracker?useSSL=false";
 		String driver = "com.mysql.jdbc.Driver";
 		

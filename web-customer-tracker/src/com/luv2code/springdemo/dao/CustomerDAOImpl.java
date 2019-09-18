@@ -19,13 +19,35 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	@Transactional
+	// @Transactional // Removing this because transactional is in the service level, not the DAO
 	public List<Customer> getCustomers() {
 		// Fetch transaction and query all customers and return the list
 		Session localSession = sessionFactory.getCurrentSession();
-		Query<Customer> theQuery = localSession.createQuery("from Customer", Customer.class);
+		Query<Customer> theQuery = localSession.createQuery("from Customer order by lastName", Customer.class);
 		List<Customer> customers = theQuery.getResultList();
 		return customers;
+	}
+
+	@Override
+	public void saveCustomer(Customer enteredCustomer) {
+		// Use saveOrUpdate(...) because it does PUT and POST
+		Session localSession = sessionFactory.getCurrentSession();
+		localSession.saveOrUpdate(enteredCustomer);
+	}
+
+	@Override
+	public Customer getCustomer(int custId) {
+		Session localSession = sessionFactory.getCurrentSession();
+		Customer customer = localSession.get(Customer.class, custId);
+		return customer;
+	}
+
+	@Override
+	public void deleteCustomer(int custId) {
+		Session localSession = sessionFactory.getCurrentSession();
+		Query<Customer> theQuery = localSession.createQuery("DELETE from Customer WHERE id=:cust_id");
+		theQuery.setParameter("cust_id", custId);
+		theQuery.executeUpdate();
 	}
 
 }

@@ -1,0 +1,4 @@
+@charset "ISO-8859-1";
+tr:nth-child(even){
+	background-color: #e3f2fd;
+}

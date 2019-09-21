@@ -25,4 +25,7 @@ public class PointCutExpressions {
 	
 	@Pointcut("execution(* com.callat.aopdemo.dao.AccountDAO.findAccounts(..))")
 	public void findAccountsAdvice() {}
+	
+	@Pointcut("execution(* com.callat.aopdemo.service.TrafficFortuneService.getFortune(..))")
+	public void getFortunePC() {}
 }

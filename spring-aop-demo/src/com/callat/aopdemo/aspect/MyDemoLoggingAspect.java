@@ -3,8 +3,11 @@ package com.callat.aopdemo.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -69,7 +72,7 @@ public class MyDemoLoggingAspect {
 			i.setName(i.getName().toUpperCase());
 		}
 		
-		System.out.println("@AfterReturning value is " + theList);
+		System.out.println("@AfterReturning value at completion is " + theList);
 	}
 	
 	// After Throwing advice here
@@ -78,6 +81,35 @@ public class MyDemoLoggingAspect {
 		System.out.println("@AfterThrowing started");
 		System.out.println("Executing on: " + jp.getSignature().toShortString());
 		System.out.println("@AfterThrowing value received is " + theExc);
+		System.out.println("@AfterThrowing COMPLETE");
+	}
+	
+	// After advice here
+	@After("com.callat.aopdemo.aspect.PointCutExpressions.findAccountsAdvice()")
+	public void afterFindAccounts(JoinPoint jp) {
+		System.out.println("@After started");
+		System.out.println("Executing on: " + jp.getSignature().toShortString());
+		System.out.println("@After COMPLETE");
+	}
+	
+	// Around advice 
+	@Around("com.callat.aopdemo.aspect.PointCutExpressions.getFortunePC()")
+	public Object aroundGetFortune(ProceedingJoinPoint jp) throws Throwable{
+		System.out.println("@Around started");
+		long begin = System.currentTimeMillis();
+		Object rez = null;
+		try {
+			rez = jp.proceed();
+		}catch(Exception e) {
+			System.out.println("Exception triggered here: " + e.getMessage());
+			rez = "Stub code for err handling"; // Handle and resolve exception
+			// throw e; // rethrow exception back up to main (the calling method)
+		}
+		long end = System.currentTimeMillis();
+		long duration = end-begin;
+		System.out.println("@Around COMPLETE");
+		System.out.println("Total Duration: " + duration/1000 + " secs");
+		return rez;
 	}
 
 }

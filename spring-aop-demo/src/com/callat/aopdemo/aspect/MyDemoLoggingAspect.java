@@ -1,6 +1,10 @@
 package com.callat.aopdemo.aspect;
 
+import java.util.List;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -52,4 +56,28 @@ public class MyDemoLoggingAspect {
 			}
 		}
 	}
+	
+	// After returning advice
+	@AfterReturning(pointcut="com.callat.aopdemo.aspect.PointCutExpressions.findAccountsAdvice()",returning="theList")
+	public void afterReturningFindAccountsAdvice(JoinPoint jp, List<Account> theList) {
+		System.out.println("@AfterReturning started");
+		System.out.println("Executing on: " + jp.getSignature().toShortString());
+		System.out.println("@AfterReturning value received is " + theList);
+		
+		// To post process, all caps for example, do operations on the the "returning" value 
+		for (Account i:theList) {
+			i.setName(i.getName().toUpperCase());
+		}
+		
+		System.out.println("@AfterReturning value is " + theList);
+	}
+	
+	// After Throwing advice here
+	@AfterThrowing(pointcut="com.callat.aopdemo.aspect.PointCutExpressions.findAccountsAdvice()",throwing="theExc")
+	public void afterReturningExceptionFindAccounts(JoinPoint jp, Throwable theExc) {
+		System.out.println("@AfterThrowing started");
+		System.out.println("Executing on: " + jp.getSignature().toShortString());
+		System.out.println("@AfterThrowing value received is " + theExc);
+	}
+
 }

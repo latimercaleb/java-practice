@@ -22,4 +22,7 @@ public class PointCutExpressions {
 	
 	@Pointcut("execution(* com.callat.aopdemo.dao.AccountDAO.addLastAcct(..))")
 	public void lastOnly() {}
+	
+	@Pointcut("execution(* com.callat.aopdemo.dao.AccountDAO.findAccounts(..))")
+	public void findAccountsAdvice() {}
 }
